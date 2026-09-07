@@ -1,0 +1,32 @@
+# Private corpus and machine-specific data
+paperff20260710/
+mineru-local.json
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Generated knowledge-base artifacts
+kb/paper_catalog.jsonl
+kb/paper_catalog_enriched.jsonl
+kb/paperqa_manifest.csv
+kb/paperqa_manifest_enriched.csv
+kb/question_bank.jsonl
+kb/question_bank.md
+kb/compare_matrix.md
+kb/topic_summary.md
+kb/knowledge-rag-config.yaml
+kb/config.yaml
+kb/paper_bilingual_cache.json
+kb/crossref_cache.json
+kb/paperqa_docs_cache.*
+kb/paper_kb_web.sqlite3
+kb/metadata_enrichment_report.json
+
+# Runtime output
+web-run*.log
+*.log
+__pycache__/
+*.pyc
+*.pyo

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel search-panel">
+  <form class="search-form"
+        action="/ask"
+        method="get"
+        hx-get="/ask"
+        hx-target="#ask-result"
+        hx-swap="outerHTML"
+        hx-push-url="true">
+    <input class="search-input" type="search" name="q" value="{{ question }}" placeholder="Ask about the corpus">
+    <select name="mode">
+      <option value="auto" {% if mode == 'auto' %}selected{% endif %}>Auto</option>
+      <option value="paperqa" {% if mode == 'paperqa' %}selected{% endif %}>PaperQA</option>
+      <option value="local" {% if mode == 'local' %}selected{% endif %}>Local</option>
+    </select>
+    <input type="number" min="1" max="10" step="1" name="limit" value="{{ limit }}" class="limit-input" title="Evidence items">
+    <button type="submit">Ask</button>
+  </form>
+</section>
+
+{% include "partials/ask_result.html" %}
+{% endblock %}

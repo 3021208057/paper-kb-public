@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} | {{ site_title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+  <script src="{{ url_for('static', path='htmx.min.js') }}" defer></script>
+  <script src="{{ url_for('static', path='mathjax-config.js') }}"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <a href="/" class="brand-link">{{ site_title }}</a>
+      <span class="brand-sub">local-first paper library</span>
+    </div>
+    <nav class="tabs" aria-label="Primary">
+      <a href="/" class="{% if active_tab == 'search' %}active{% endif %}">Search</a>
+      <a href="/compare" class="{% if active_tab == 'compare' %}active{% endif %}">Compare</a>
+      <a href="/questions" class="{% if active_tab == 'questions' %}active{% endif %}">Question Bank</a>
+      <a href="/ask" class="{% if active_tab == 'ask' %}active{% endif %}">Ask</a>
+    </nav>
+    <div class="stats">
+      <span>{{ stats.paper_count }} papers</span>
+      <span>{{ stats.word_count }} words</span>
+      <span>{{ stats.last_sync_at or 'not synced yet' }}</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

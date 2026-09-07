@@ -1,0 +1,5 @@
+path,kind,source,status,note
+md-batch/Sample Waveguide Filter Optimization.md,markdown,synthetic,included,Demo corpus paper
+md-batch/Sample Neural Macromodeling for GaN HEMT.md,markdown,synthetic,included,Demo corpus paper
+md-batch/Sample Space Mapping Sensitivity for Microwave Filters.md,markdown,synthetic,included,Demo corpus paper
+profile-readme/README.md,template,handwritten,included,Profile repo template

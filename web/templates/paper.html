@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="paper-layout">
+  <article class="paper-main panel">
+    <div class="paper-head">
+      <div>
+        <h1 class="paper-title">{{ paper.title }}</h1>
+        {% if paper.title_zh %}
+          <div class="paper-title-zh">{{ paper.title_zh }}</div>
+        {% endif %}
+        <div class="paper-subtitle">
+          {% if paper.authors %}<span>{{ paper.authors }}</span>{% endif %}
+          {% if paper.year %}<span>{{ paper.year }}</span>{% endif %}
+          {% if paper.doi %}<span>DOI {{ paper.doi }}</span>{% endif %}
+        </div>
+        <div class="tag-row">
+          {% for tag in paper.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="paper-actions">
+        <a class="button" href="{{ paper.raw_url }}">Open Markdown</a>
+        {% if paper.figure_index_url %}
+          <a class="button secondary" href="{{ paper.figure_index_url }}">Figure index</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if paper.abstract or paper.abstract_zh %}
+      <section class="paper-summary">
+        <h2>Abstract / Summary</h2>
+        {% if paper.abstract %}
+          <p class="summary-text">{{ paper.abstract }}</p>
+        {% endif %}
+        {% if paper.abstract_zh %}
+          <p class="summary-text zh-text">{{ paper.abstract_zh }}</p>
+        {% endif %}
+      </section>
+    {% endif %}
+
+    {% if toc_html %}
+      <section class="toc-panel">
+        {{ toc_html|safe }}
+      </section>
+    {% endif %}
+
+    <section class="paper-body markdown-body">
+      {{ body_html|safe }}
+    </section>
+  </article>
+
+  <aside class="paper-side">
+    <section class="panel meta-panel">
+      <h2>Details</h2>
+      <dl class="meta-list">
+        <div><dt>File</dt><dd>{{ paper.file_location }}</dd></div>
+        <div><dt>Primary tag</dt><dd>{{ paper.primary_tag }}</dd></div>
+        <div><dt>Sections</dt><dd>{{ paper.section_count }}</dd></div>
+        <div><dt>Words</dt><dd>{{ paper.word_count }}</dd></div>
+        <div><dt>Metadata</dt><dd>{{ paper.metadata_source or 'markdown' }}</dd></div>
+      </dl>
+      <div class="side-links">
+        <a href="{{ paper.raw_url }}">Open Markdown</a>
+        {% if paper.figure_index_url %}
+          <a href="{{ paper.figure_index_url }}">Figure index</a>
+        {% endif %}
+      </div>
+    </section>
+
+    {% if paper.figure_count %}
+    <section class="panel meta-panel">
+      <h2>Figures</h2>
+      <p>{{ paper.figure_count }} file(s) in the asset folder.</p>
+      <ul class="figure-list">
+        {% for fig in paper.figure_files %}
+          <li><a href="{{ fig.url }}">{{ fig.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </aside>
+</section>
+{% endblock %}

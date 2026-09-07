@@ -1,0 +1,53 @@
+<section id="ask-result" class="panel ask-panel">
+  <div class="panel-head">
+    <h2>Answer</h2>
+    <span>{{ result.mode or 'auto' }}</span>
+  </div>
+
+  {% if result.error %}
+    <div class="alert">{{ result.error }}</div>
+  {% endif %}
+
+  {% if result_html %}
+    <div class="answer markdown-body">
+      {{ result_html|safe }}
+    </div>
+  {% endif %}
+
+  {% if result.references %}
+    <details class="reference-block">
+      <summary>References</summary>
+      <div class="markdown-body">{{ result.references }}</div>
+    </details>
+  {% endif %}
+
+  {% if result.evidence %}
+    <section class="evidence-block">
+      <h3>Evidence</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th class="num">Score</th>
+            <th>Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in result.evidence %}
+            <tr>
+              <td>
+                <a class="paper-link" href="{{ item.paper_url }}">{{ item.title }}</a>
+                {% if item.title_zh %}
+                  <div class="muted zh-line">{{ item.title_zh }}</div>
+                {% endif %}
+                <div class="muted">{{ item.citation }}</div>
+              </td>
+              <td class="num">{{ item.score }}</td>
+              <td>{{ item.context }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endif %}
+</section>

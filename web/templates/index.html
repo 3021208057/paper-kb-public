@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel search-panel">
+  <form id="search-form"
+        class="search-form"
+        action="/search"
+        method="get"
+        hx-get="/search"
+        hx-target="#results"
+        hx-swap="outerHTML"
+        hx-push-url="true">
+    <input class="search-input" type="search" name="q" value="{{ filters.query }}" placeholder="Search title, tag, year, author, or full text">
+    <select name="tag">
+      <option value="">All tags</option>
+      {% for item in facets.tags %}
+        <option value="{{ item.name }}" {% if filters.tag == item.name %}selected{% endif %}>{{ item.name }} ({{ item.count }})</option>
+      {% endfor %}
+    </select>
+    <select name="year">
+      <option value="">All years</option>
+      {% for item in facets.years %}
+        <option value="{{ item.name }}" {% if filters.year == item.name %}selected{% endif %}>{{ item.name }} ({{ item.count }})</option>
+      {% endfor %}
+    </select>
+    <input type="text" name="author" value="{{ filters.author }}" placeholder="Author">
+    <input type="text" name="title" value="{{ filters.title }}" placeholder="Title">
+    <input type="number" min="5" max="100" step="5" name="limit" value="{{ filters.limit }}" class="limit-input" title="Result limit">
+    <button type="submit">Search</button>
+    <button type="button" class="secondary" hx-post="/sync" hx-target="#sync-status" hx-swap="innerHTML">Refresh</button>
+    <a class="secondary-link" href="/">Reset</a>
+  </form>
+  <div id="sync-status" class="sync-status"></div>
+</section>
+
+{% include "partials/results.html" %}
+{% endblock %}

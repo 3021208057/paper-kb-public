@@ -1,0 +1,56 @@
+<section id="results" class="panel results-panel">
+  <div class="panel-head">
+    <h2>Results</h2>
+    <span>{{ result_count }} item(s)</span>
+  </div>
+
+  {% if query %}
+    <div class="query-line">Query: <strong>{{ query }}</strong></div>
+  {% endif %}
+
+  {% if results %}
+    <table class="data-table results-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th class="num">Year</th>
+          <th>Tags</th>
+          <th>Preview</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in results %}
+          <tr>
+            <td>
+              <a class="paper-link" href="{{ item.paper_url }}">{{ item.title }}</a>
+              {% if item.title_zh %}
+                <div class="muted zh-line">{{ item.title_zh }}</div>
+              {% endif %}
+              {% if item.authors %}
+                <div class="muted">{{ item.authors }}</div>
+              {% endif %}
+            </td>
+            <td class="num">{{ item.year or '-' }}</td>
+            <td>
+              <div class="tag-row">
+                {% for tag in item.tags %}
+                  <span class="tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            </td>
+            <td class="preview-cell">
+              {% if item.preview %}
+                <div class="preview-en">{{ item.preview|safe }}</div>
+              {% endif %}
+              {% if item.preview_zh %}
+                <div class="muted zh-line preview-zh">{{ item.preview_zh }}</div>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="empty-state">No matches.</p>
+  {% endif %}
+</section>

@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+jinja2
+markdown
+httpx
+argostranslate
+paper-qa

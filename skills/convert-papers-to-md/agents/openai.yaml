@@ -1,0 +1,4 @@
+interface:
+  display_name: "Convert Papers to MD"
+  short_description: "Batch scholarly PDFs to Markdown with MinerU."
+  default_prompt: "Use $convert-papers-to-md to convert the PDFs in this folder into Markdown with figures."

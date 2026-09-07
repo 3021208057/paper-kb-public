@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel">
+  <h1 class="section-title">Compare</h1>
+  {% for section in sections %}
+    <section class="compare-section">
+      <h2>{{ section.title }}</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th class="num">Count</th>
+            <th>Main angle</th>
+            <th>Representative papers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in section.rows %}
+            <tr>
+              <td><span class="tag">{{ row.tag }}</span></td>
+              <td class="num">{{ row.count }}</td>
+              <td>{{ row.angle }}</td>
+              <td>
+                <ul class="compact-list">
+                  {% for item in row.examples %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endfor %}
+</section>
+{% endblock %}
