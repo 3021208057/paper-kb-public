@@ -4,8 +4,8 @@ Local-first PDF-to-Markdown conversion, searchable paper browsing, and a reusabl
 
 ## Links
 
-- Main repo: `https://github.com/YOUR_USERNAME/paper-kb-public`
-- Sample corpus: `https://github.com/YOUR_USERNAME/paper-kb-public/tree/main/md-batch`
+- Main repo: `https://github.com/3021208057/paper-kb-public`
+- Sample corpus: `https://github.com/3021208057/paper-kb-public/tree/main/md-batch`
 - Conversion skill: `skills/convert-papers-to-md`
 
 ## Notes

@@ -52,7 +52,7 @@ Then run a pilot or batch conversion:
 ## Publish
 
 ```powershell
-git remote add origin https://github.com/YOUR_USERNAME/paper-kb-public.git
+git remote add origin https://github.com/3021208057/paper-kb-public.git
 git push -u origin main
 ```
 
